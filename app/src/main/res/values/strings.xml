@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Covid-19</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_symptom_check">Symptom Check</string>
+    <string name="menu_precautionary_measures">Precautionary Measures</string>
+    <string name="menu_face_mask_tips">Face Mask Tips</string>
+    <string name="menu_helpline">Helpline</string>
+    <string name="menu_test_centers">Test Centers</string>
+    <string name="menu_login">Login</string>
+    <string name="lbl_hello">Hello</string>
+    <string name="lbl_guest">Guest User</string>
+    <string name="title_symptom_checker">Symptom Checker</string>
+
+    <string name="lbl_que1">1. What is your gender?</string>
+    <string name="q1_option_1">Male</string>
+    <string name="q1_option_2">Female</string>
+    <string name="q1_option_3">Others</string>
+
+    <string name="lbl_que3">3. Have you or someone from your family contact with laboratory confirmed Covid-19 patient in last 14 days?</string>
+    <string name="q3_option_1">Yes</string>
+    <string name="q3_option_2">No</string>
+
+    <string name="lbl_que4">4. Are you currently working for essential services for public exposed places ( Hospitals, delivery services, malls)?</string>
+    <string name="lbl_que2">2. Enter your details.</string>
+    <string name="hint_age">Enter Age</string>
+    <string name="lbl_que5">5. Are you having one or more of the following symptoms?</string>
+    <string name="que5_option_1">None</string>
+    <string name="que5_option_2">Fever</string>
+    <string name="que5_option_3">Dry cough</string>
+    <string name="que5_option_4">Shortness of breath</string>
+    <string name="que5_option_5">Headache</string>
+    <string name="que5_option_6">Running Nose</string>
+    <string name="btn_next">Next</string>
+    <string name="hint_enter_email">Enter Email</string>
+    <string name="btn_login">Login</string>
+    <string name="hint_enter_name">Enter Name</string>
+    <string name="title_help_line">Help Lines</string>
+    <string name="title_test_centers">Test Centers</string>
+
+    <string name="lbl_rec_1">Clean your hands often. Use soap and water, or an alcohol-based hand rub.</string>
+    <string name="lbl_rec_2">Maintain a safe distance from anyone who is coughing or sneezing.</string>
+    <string name="lbl_rec_3">Wear a mask when physical distancing is not possible.</string>
+    <string name="lbl_rec_4">Don’t touch your eyes, nose or mouth.</string>
+    <string name="lbl_rec_5">Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.</string>
+    <string name="lbl_rec_6">Stay home if you feel unwell.</string>
+    <string name="lbl_rec_7">If you have a fever, cough and difficulty breathing, seek medical attention.</string>
+
+
+</resources>

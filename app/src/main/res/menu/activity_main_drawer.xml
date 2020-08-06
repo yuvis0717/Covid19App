@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_black_24dp"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_symptom_check"
+            android:icon="@drawable/symtom_check"
+            android:title="@string/menu_symptom_check" />
+        <item
+            android:id="@+id/nav_precautionary_measures"
+            android:icon="@drawable/precautionary_measures"
+            android:title="@string/menu_precautionary_measures" />
+        <item
+            android:id="@+id/nav_face_mask_tips"
+            android:icon="@drawable/face_tips"
+            android:title="@string/menu_face_mask_tips" />
+
+        <item
+            android:id="@+id/nav_help_line"
+            android:icon="@drawable/help_line"
+            android:title="@string/menu_helpline" />
+
+        <item
+            android:id="@+id/nav_test_center"
+            android:icon="@drawable/icn_test_center"
+            android:title="@string/menu_test_centers" />
+
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/log_in"
+            android:title="@string/menu_login" />
+    </group>
+
+</menu>

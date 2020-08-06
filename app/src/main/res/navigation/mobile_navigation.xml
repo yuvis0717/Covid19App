@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.covid19app.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_symptom_check"
+        android:name="com.covid19app.ui.symptom.SymptomCheckFragment"
+        android:label="@string/menu_symptom_check"
+        tools:layout="@layout/fragment_symptom_check" />
+
+    <fragment
+        android:id="@+id/nav_precautionary_measures"
+        android:name="com.covid19app.ui.safetyguide.PrecautionaryMeasuresFragment"
+        android:label="@string/menu_precautionary_measures"
+        tools:layout="@layout/fragment_precautionary_measures" />
+
+    <fragment
+        android:id="@+id/nav_face_mask_tips"
+        android:name="com.covid19app.ui.facemasktips.FaceMaskTipsFragment"
+        android:label="@string/menu_face_mask_tips"
+        tools:layout="@layout/fragment_face_mask_tips" />
+
+    <fragment
+        android:id="@+id/nav_help_line"
+        android:name="com.covid19app.ui.helpline.HelpLineFragment"
+        android:label="@string/menu_helpline"
+        tools:layout="@layout/fragment_helpline" />
+
+    <fragment
+        android:id="@+id/nav_test_center"
+        android:name="com.covid19app.ui.testcenter.TestCentersFragment"
+        android:label="@string/menu_test_centers"
+        tools:layout="@layout/fragment_test_centers" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.covid19app.ui.login.LoginFragment"
+        android:label="@string/menu_login"
+        tools:layout="@layout/fragment_login" />
+</navigation>
