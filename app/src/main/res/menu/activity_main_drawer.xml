@@ -15,7 +15,8 @@
         <item
             android:id="@+id/nav_precautionary_measures"
             android:icon="@drawable/precautionary_measures"
-            android:title="@string/menu_precautionary_measures" />
+            android:title="@string/menu_precautionary_measures"
+            android:visible="false" />
         <item
             android:id="@+id/nav_face_mask_tips"
             android:icon="@drawable/face_tips"
@@ -34,7 +35,15 @@
         <item
             android:id="@+id/nav_login"
             android:icon="@drawable/log_in"
-            android:title="@string/menu_login" />
+            android:title="@string/menu_login"
+            android:visible="false" />
+
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/log_out"
+            android:iconTint="@android:color/black"
+            android:title="Log Out" />
     </group>
 
 </menu>

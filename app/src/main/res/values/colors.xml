@@ -10,4 +10,6 @@
     <color name="colorLow">#23721A</color>
     <color name="colorMedium">#FB8C00</color>
     <color name="colorHigh">#DD0000</color>
+    
+    <color name="colorGray">#42B72A</color>
 </resources>

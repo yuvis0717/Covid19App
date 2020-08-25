@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Window;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+
+import com.covid19app.ui.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -31,11 +32,15 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 SharedPreferences pref = getSharedPreferences("app_pref", Context.MODE_PRIVATE);
                 boolean isLogin = pref.getBoolean("is_login", false);
-                if (!isLogin) {
+                boolean isAdminLogin = pref.getBoolean("is_login_admin", false);
+                if (isLogin) {
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
-                } else {
+                } else if (isAdminLogin) {
                     startActivity(new Intent(SplashActivity.this, AdminListActivity.class));
+                    finish();
+                } else {
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     finish();
                 }
             }

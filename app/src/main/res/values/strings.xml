@@ -51,6 +51,15 @@
     <string name="lbl_rec_5">Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.</string>
     <string name="lbl_rec_6">Stay home if you feel unwell.</string>
     <string name="lbl_rec_7">If you have a fever, cough and difficulty breathing, seek medical attention.</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="confirmation_password">Enter Confirm Password</string>
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+    <string name="btn_sign_up">Sign Up</string>
 
+    <string name="resetTitle">Forgot Password ?</string>
+    <string name="resetDescription">We Just need Your Registerted Email Id for \n Sending an Email to Reset Password.</string>
+    <string name="forgot_password">Forgot Password</string>
 
 </resources>

@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.covid19app.adapters.AdminListAdapter;
+import com.covid19app.ui.login.LoginActivity;
 import com.covid19app.ui.symptom.SymptomCheckModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -75,8 +76,8 @@ public class AdminListActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SharedPreferences pref = getSharedPreferences("app_pref", Context.MODE_PRIVATE);
-                pref.edit().putBoolean("is_login", false).apply();
-                startActivity(new Intent(AdminListActivity.this, MainActivity.class));
+                pref.edit().putBoolean("is_login_admin", false).apply();
+                startActivity(new Intent(AdminListActivity.this, LoginActivity.class));
                 finishAffinity();
             }
         });

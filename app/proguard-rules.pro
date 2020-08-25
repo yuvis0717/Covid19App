@@ -22,8 +22,11 @@
 
 
 -keep class com.covid19app.ui.helpline.HelplineModel{ *; }
+-keepclassmembers class com.covid19app.ui.helpline.HelplineModel{ *; }
 -keep class com.covid19app.ui.testcenter.TestCentersModel{ *; }
+-keepclassmembers class com.covid19app.ui.testcenter.TestCentersModel{ *; }
 -keep class com.covid19app.models.**{ *; }
+-keepclassmembers class com.covid19app.models.**{ *; }
 
 
 # Retrofit

@@ -3,15 +3,14 @@ package com.covid19app.utils;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-
-import androidx.annotation.ColorInt;
-import androidx.annotation.Px;
-import androidx.annotation.VisibleForTesting;
-
 import android.text.Layout;
 import android.text.Spanned;
 import android.text.style.BulletSpan;
 import android.text.style.LeadingMarginSpan;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.Px;
+import androidx.annotation.VisibleForTesting;
 
 /**
  * Creating a bullet span with bigger bullets than {@link BulletSpan} and with a left margin

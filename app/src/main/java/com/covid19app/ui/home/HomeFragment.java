@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -17,9 +17,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.covid19app.MainActivity;
 import com.covid19app.R;
 import com.covid19app.SymtomsCheckActivity;
+import com.covid19app.models.BreakdownsDTO;
 import com.covid19app.models.CountryResponseDTO;
 import com.covid19app.models.RowsDTO;
-import com.covid19app.network.APIInterface;
 import com.google.android.material.card.MaterialCardView;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -62,18 +62,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         cvTestCenters.setOnClickListener(this);
         cvHelpLine.setOnClickListener(this);
 
-        homeViewModel.getResponseDTOMutableLiveData().observe(this, new Observer<CountryResponseDTO>() {
+        homeViewModel.getResponseDTOMutableLiveData().observe(getViewLifecycleOwner(), new Observer<BreakdownsDTO>() {
             @Override
-            public void onChanged(@Nullable CountryResponseDTO s) {
+            public void onChanged(@Nullable BreakdownsDTO s) {
                 mSwipeRefreshLayout.setRefreshing(false);
                 System.out.println("==>onChanged");
-
-                if (s != null && s.getData() != null && s.getData().getRows().size() > 0) {
-                    System.out.println("==>" + s.getData().getRows().size());
-                    RowsDTO mBean = s.getData().getRows().get(0);
-                    tvConfirm.setText(mBean.getTotalCases());
-                    tvRecovered.setText(mBean.getTotalRecovered());
-                    tvDeaths.setText(mBean.getTotalDeaths());
+                if (s != null) {
+                    tvConfirm.setText(String.valueOf(s.getTotalConfirmedCases()));
+                    tvRecovered.setText(String.valueOf(s.getTotalRecoveredCases()));
+                    tvDeaths.setText(String.valueOf(s.getTotalDeaths()));
                 }
             }
         });

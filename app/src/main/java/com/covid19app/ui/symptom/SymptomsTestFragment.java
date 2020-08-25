@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.covid19app.R;
-import com.google.android.material.button.MaterialButton;
 
 public class SymptomsTestFragment extends Fragment {
     private static String BUNDLE_TYPE = "type";

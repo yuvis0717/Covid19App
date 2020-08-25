@@ -1,7 +1,5 @@
 package com.covid19app;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;

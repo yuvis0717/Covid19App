@@ -42,16 +42,22 @@ public class AdminListAdapter extends ListAdapter<SymptomCheckModel, AdminListAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         SymptomCheckModel mBean = getItem(position);
-        holder.tvName.setText(mBean.getName());
-        holder.tvGender.setText(mBean.getGender());
-        holder.tvRisk.setText(mBean.getRisk());
+        if (mBean != null) {
+            holder.tvName.setText(mBean.getName());
+            holder.tvGender.setText(mBean.getGender());
+            holder.tvRisk.setText(mBean.getRisk() != null ? mBean.getRisk() : "Low");
 
-        if (mBean.getRisk().equalsIgnoreCase("high")) {
-            holder.tvRisk.setTextColor(ContextCompat.getColor(holder.tvRisk.getContext(), R.color.colorHigh));
-        } else if (mBean.getRisk().equalsIgnoreCase("medium")) {
-            holder.tvRisk.setTextColor(ContextCompat.getColor(holder.tvRisk.getContext(), R.color.colorMedium));
-        } else {
-            holder.tvRisk.setTextColor(ContextCompat.getColor(holder.tvRisk.getContext(), R.color.colorLow));
+            if (mBean.getRisk() != null) {
+                if (mBean.getRisk().equalsIgnoreCase("high")) {
+                    holder.tvRisk.setTextColor(ContextCompat.getColor(holder.tvRisk.getContext(), R.color.colorHigh));
+                } else if (mBean.getRisk().equalsIgnoreCase("medium")) {
+                    holder.tvRisk.setTextColor(ContextCompat.getColor(holder.tvRisk.getContext(), R.color.colorMedium));
+                } else {
+                    holder.tvRisk.setTextColor(ContextCompat.getColor(holder.tvRisk.getContext(), R.color.colorLow));
+                }
+            } else {
+                holder.tvRisk.setTextColor(ContextCompat.getColor(holder.tvRisk.getContext(), R.color.colorLow));
+            }
         }
     }
 

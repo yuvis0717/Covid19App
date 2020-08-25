@@ -2,8 +2,6 @@ package com.covid19app.ui.symptom;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +19,8 @@ import androidx.lifecycle.ViewModelProviders;
 import com.covid19app.MainActivity;
 import com.covid19app.R;
 import com.covid19app.SymptomsCheckResultActivity;
+import com.covid19app.models.Constant;
+import com.covid19app.models.UserInformation;
 import com.covid19app.utils.CommanUtils;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
@@ -30,8 +30,6 @@ import com.google.gson.Gson;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
 import java.util.List;
-
-import static android.nfc.NfcAdapter.EXTRA_DATA;
 
 public class SymptomCheckFragment extends Fragment implements View.OnClickListener {
 
@@ -91,7 +89,7 @@ public class SymptomCheckFragment extends Fragment implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ivMenu: {
-                if (getActivity() != null)
+                if (getActivity() != null && getActivity() instanceof MainActivity)
                     ((MainActivity) getActivity()).openMenuDrawer();
                 break;
             }
@@ -115,7 +113,12 @@ public class SymptomCheckFragment extends Fragment implements View.OnClickListen
                     if (age == null)
                         return;
                     else {
-                        symptomCheckViewModel.getSymptomCheckModel().setName(age.getUserName());
+                        String name = "";
+                        UserInformation information = Constant.getInfo();
+                        if (information != null) {
+                            name = information.getName() + " " + information.getLastName();
+                        }
+                        symptomCheckViewModel.getSymptomCheckModel().setName(age.getUserName() != null ? age.getUserName() : name);
                         symptomCheckViewModel.getSymptomCheckModel().setAge(age.getUserAge());
                     }
                 } else if (fragment instanceof SymptomsTest5Fragment) {
@@ -199,7 +202,7 @@ public class SymptomCheckFragment extends Fragment implements View.OnClickListen
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     if (getActivity() != null)
-                                        ((MainActivity) getActivity()).onBackPressed();
+                                        getActivity().onBackPressed();
                                     progressBar.checkStateCompleted(true);
                                     Intent intent = new Intent(getContext(), SymptomsCheckResultActivity.class);
                                     intent.putExtra("data", new Gson().toJson(symptomCheckViewModel.getSymptomCheckModel()));
