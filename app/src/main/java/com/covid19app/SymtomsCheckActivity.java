@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.covid19app.ui.helpline.HelpLineFragment;
+import com.covid19app.ui.news.NewsFragment;
 import com.covid19app.ui.symptom.SymptomCheckFragment;
 import com.covid19app.ui.testcenter.TestCentersFragment;
 
@@ -80,6 +81,11 @@ public class SymtomsCheckActivity extends AppCompatActivity {
             case 2: {
                 tvTitle.setText("Help Lines");
                 ft.replace(R.id.fragmentLoad, HelpLineFragment.getInstance(true));
+                break;
+            }
+            case 3: {
+                tvTitle.setText("News");
+                ft.replace(R.id.fragmentLoad, NewsFragment.getInstance(true));
                 break;
             }
         }

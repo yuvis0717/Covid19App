@@ -1,5 +1,7 @@
 package com.covid19app.ui.home;
 
+import android.text.TextUtils;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -38,7 +40,7 @@ public class HomeViewModel extends ViewModel {
         return mText;
     }
 
-    public void callCovidRecordApi() {
+    public void callCovidRecordApi(final String countryName, final String countryCode) {
         apiInterface.getCoivdCases("https://api.smartable.ai/coronavirus/stats/global?Subscription-Key=1a3e9cd5b22c4a9b86885d5ce7a1ce3d")
                 .enqueue(new Callback<ResponseDTO>() {
                     @Override
@@ -48,13 +50,27 @@ public class HomeViewModel extends ViewModel {
                                 response.body().getStats() != null && response.body().getStats().getBreakdowns() != null) {
                             System.out.println("==>Api call");
                             List<BreakdownsDTO> list = response.body().getStats().getBreakdowns();
+                            boolean isNotFound = true;
                             for (BreakdownsDTO mBean : list) {
                                 if (mBean != null && mBean.getLocation() != null) {
-                                    if (mBean.getLocation().getCountryOrRegion().equalsIgnoreCase("Canada")) {
+                                    String name = TextUtils.isEmpty(countryName) ? "Canada" : countryName;
+                                    if (mBean.getLocation().getCountryOrRegion().contains(name)) {
                                         responseDTOMutableLiveData.setValue(mBean);
+                                        isNotFound = false;
+                                        break;
+                                    } else if (mBean.getLocation().getIsoCode() != null && mBean.getLocation().getIsoCode().equalsIgnoreCase(countryCode)) {
+                                        responseDTOMutableLiveData.setValue(mBean);
+                                        isNotFound = false;
                                         break;
                                     }
                                 }
+                            }
+                            if (isNotFound) {
+                                BreakdownsDTO mBean = new BreakdownsDTO();
+                                mBean.setTotalConfirmedCases(0);
+                                mBean.setTotalDeaths(0);
+                                mBean.setTotalRecoveredCases(0);
+                                responseDTOMutableLiveData.setValue(mBean);
                             }
                         }
                     }

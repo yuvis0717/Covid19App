@@ -43,6 +43,7 @@
     <string name="hint_enter_name">Enter Name</string>
     <string name="title_help_line">Help Lines</string>
     <string name="title_test_centers">Test Centers</string>
+    <string name="title_news">News</string>
 
     <string name="lbl_rec_1">Clean your hands often. Use soap and water, or an alcohol-based hand rub.</string>
     <string name="lbl_rec_2">Maintain a safe distance from anyone who is coughing or sneezing.</string>

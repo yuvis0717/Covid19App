@@ -1,6 +1,9 @@
 package com.covid19app.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +24,14 @@ import com.covid19app.models.BreakdownsDTO;
 import com.covid19app.models.CountryResponseDTO;
 import com.covid19app.models.RowsDTO;
 import com.google.android.material.card.MaterialCardView;
+import com.hbb20.CountryCodePicker;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private HomeViewModel homeViewModel;
     private View root;
+    private CountryCodePicker ccp;
+    private SharedPreferences pref;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -42,17 +48,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         MaterialCardView cvChecker = root.findViewById(R.id.cvChecker);
         MaterialCardView cvTestCenters = root.findViewById(R.id.cvTestCenters);
         MaterialCardView cvHelpLine = root.findViewById(R.id.cvHelpLine);
+        MaterialCardView cvNews = root.findViewById(R.id.cvNews);
         final TextView tvConfirm = root.findViewById(R.id.tvConfirm);
         final TextView tvRecovered = root.findViewById(R.id.tvRecovered);
         final TextView tvDeaths = root.findViewById(R.id.tvDeaths);
         final SwipeRefreshLayout mSwipeRefreshLayout = root.findViewById(R.id.swipeRefresh);
+        ccp = root.findViewById(R.id.cppCodePicker);
+        pref = getContext().getSharedPreferences("app_pref", Context.MODE_PRIVATE);
 
         mSwipeRefreshLayout.setRefreshing(true);
 
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                homeViewModel.callCovidRecordApi();
+                homeViewModel.callCovidRecordApi(ccp.getSelectedCountryEnglishName(), ccp.getSelectedCountryNameCode());
             }
         });
 
@@ -61,6 +70,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         cvChecker.setOnClickListener(this);
         cvTestCenters.setOnClickListener(this);
         cvHelpLine.setOnClickListener(this);
+        cvNews.setOnClickListener(this);
+        ccp.setCountryForNameCode(pref.getString("country_code", "CA"));
+
 
         homeViewModel.getResponseDTOMutableLiveData().observe(getViewLifecycleOwner(), new Observer<BreakdownsDTO>() {
             @Override
@@ -75,7 +87,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        homeViewModel.callCovidRecordApi();
+        homeViewModel.callCovidRecordApi(ccp.getSelectedCountryEnglishName(), ccp.getSelectedCountryNameCode());
+
+        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected() {
+                mSwipeRefreshLayout.setRefreshing(true);
+                String name = ccp.getSelectedCountryEnglishName();
+                homeViewModel.callCovidRecordApi(name, ccp.getSelectedCountryNameCode());
+                Log.d("LOG", "==> Country Name " + name);
+                pref.edit().putString("country_code", ccp.getSelectedCountryNameCode()).apply();
+            }
+        });
+
     }
 
     @Override
@@ -101,6 +125,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
             }
 
+            case R.id.cvNews: {
+                SymtomsCheckActivity.getInstance(getContext(), 3);
+                break;
+            }
         }
 
     }

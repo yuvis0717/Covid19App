@@ -174,22 +174,52 @@ public class SymptomCheckFragment extends Fragment implements View.OnClickListen
                                 boolean contactWithCovid = mBean.getContactWithPatient().equalsIgnoreCase("yes") ||
                                         mBean.getPublicExposedPlace().equalsIgnoreCase("yes");
 
-                                boolean highRisk = mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
+                                boolean highRisk = (mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
                                         mBean.getSymtomsList().contains(getString(R.string.que5_option_3)) &&
                                         mBean.getSymtomsList().contains(getString(R.string.que5_option_4)) &&
-                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_5));
+                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_5)) &&
+                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_6))) ||
 
-                                boolean mediumRisk = mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
+                                        (mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
+                                                mBean.getSymtomsList().contains(getString(R.string.que5_option_3)) &&
+                                                mBean.getSymtomsList().contains(getString(R.string.que5_option_4)) &&
+                                                mBean.getSymtomsList().contains(getString(R.string.que5_option_5))) ||
+
+                                        (mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
+                                                mBean.getSymtomsList().contains(getString(R.string.que5_option_3)) &&
+                                                mBean.getSymtomsList().contains(getString(R.string.que5_option_4)) &&
+                                                mBean.getSymtomsList().contains(getString(R.string.que5_option_6)));
+
+                                boolean mediumRisk = (mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
                                         mBean.getSymtomsList().contains(getString(R.string.que5_option_3)) &&
-                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_4));
+                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_4))) ||
 
-                                boolean lowRisk = mBean.getSymtomsList().size() > 1;
+                                        (mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
+                                                mBean.getSymtomsList().contains(getString(R.string.que5_option_3))) ||
 
-                                if (((age < 15 || age > 50) || contactWithCovid) && highRisk) {
+                                        (mBean.getSymtomsList().contains(getString(R.string.que5_option_2)));
+
+                                boolean mediumRisk1 = (mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
+                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_3)) &&
+                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_4)));
+
+                                boolean lowRisk = (mBean.getSymtomsList().contains(getString(R.string.que5_option_2)) &&
+                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_3))) ||
+                                        mBean.getSymtomsList().contains(getString(R.string.que5_option_2));
+
+
+                                if ((contactWithCovid) && highRisk) {
                                     mBean.setRisk("High");
-                                } else if (mediumRisk) {
+                                } else if (mBean.getContactWithPatient().equalsIgnoreCase("yes") &&
+                                        mBean.getPublicExposedPlace().equalsIgnoreCase("yes") && mediumRisk) {
                                     mBean.setRisk("Medium");
-                                } else if (lowRisk) {
+                                } else if ((mBean.getContactWithPatient().equalsIgnoreCase("yes") ||
+                                        mBean.getPublicExposedPlace().equalsIgnoreCase("no")) && mediumRisk1) {
+                                    mBean.setRisk("Medium");
+                                } else if (mBean.getContactWithPatient().equalsIgnoreCase("yes") &&
+                                        mBean.getPublicExposedPlace().equalsIgnoreCase("yes")) {
+                                    mBean.setRisk("Low");
+                                } else if (contactWithCovid && lowRisk) {
                                     mBean.setRisk("Low");
                                 } else {
                                     mBean.setRisk("No Risk");
